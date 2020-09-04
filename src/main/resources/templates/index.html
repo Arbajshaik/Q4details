@@ -25,7 +25,8 @@
                 onRenderCell: function (date, cellType) {
                     if (cellType == 'day') {
                         var day = date.getDay(),
-                            isDisabled = disabledDays.indexOf(day) != -1;
+                            isDisable
+                            d = disabledDays.indexOf(day) != -1;
 
                         return {
                             disabled: isDisabled
@@ -42,7 +43,7 @@
 <body>
 
 <div class="main-container">
-    <div class="tab">
+    <div class="tab">           
        <!--  <button class="tablinks" onclick="openCity(event, 'TimeTracker')">Time Tracker</button>
         <button class="tablinks" onclick="openCity(event, 'TokenDetails')">Token Details</button>
         <button class="tablinks" onclick="openCity(event, 'ConnDetails')">Connection Details</button>
@@ -53,7 +54,7 @@
     </div>
 
     <!-- Tab content -->
-    <div id="TimeTracker" class="tabcontent">
+  <!--   <div id="TimeTracker" class="tabcontent">
         <div class="container">
         <form action="#">
             <lable>Time Tracker</lable>
@@ -76,7 +77,7 @@
        Email ID: <input type="text" name="email">
         Expiry Date:  <input type="date" name="expirydate"><br /><br />
         <input type="submit" value="Submit" onClick="callRESTLoginn()">
-        <!--<input type="submit" value="LogOff" onClick="callRESTLogoff()">-->
+        <input type="submit" value="LogOff" onClick="callRESTLogoff()">
     </form>
     <div id="response1"></div>
 
@@ -84,7 +85,7 @@
 </div>
 </div>
 
-
+ -->
     <div id="Sprint" class="tabcontent">
     <div class="container">
     <form action="#">
