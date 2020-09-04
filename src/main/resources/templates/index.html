@@ -43,11 +43,11 @@
 
 <div class="main-container">
     <div class="tab">
-        <button class="tablinks" onclick="openCity(event, 'TimeTracker')">Time Tracker</button>
+       <!--  <button class="tablinks" onclick="openCity(event, 'TimeTracker')">Time Tracker</button>
         <button class="tablinks" onclick="openCity(event, 'TokenDetails')">Token Details</button>
         <button class="tablinks" onclick="openCity(event, 'ConnDetails')">Connection Details</button>
         <button class="tablinks" onclick="openCity(event, 'Sprint')">Sprint</button>
-        <button class="tablinks" onclick="openCity(event, 'LaptopAssertdetails')">LaptopAssertdetails</button> 
+        <button class="tablinks" onclick="openCity(event, 'LaptopAssertdetails')">LaptopAssertdetails</button>  -->
        <button class="tablinks" onclick="openCity(event, 'Q4Holidayvacation')">Q4Holidayvacation</button> 
     
     </div>
@@ -873,10 +873,7 @@ if (this.readyState == 4 && this.status == 200) {
         	  if (Q4 <= 0  ){
         		  alert("please add date otherwise we consider you are not applying any leave for this quater" );
         	  }
-          if (Q4>=4){
-        	  alert("Maximum level of leaves 4 only");
-        	  windows.open("error.html");
-          }
+          
           
         		  
           xhttp.onreadystatechange = function() {
