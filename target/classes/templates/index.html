@@ -206,7 +206,7 @@
  <form action='#'>
     LID: <input id="EmpId" type="text" name="LID" required>
     Name: <input id="Name" type="text" name="Name" required>
-       Q4: <input id="Q4" type="text" name="Q4" required>
+       Q4: <input id="Q4" type="text" name="Q4" disabled>
        <!--  Add a vacation<input id="Addavacation" type="date" name="Addavacation" min="2020-10-01" max="2020-12-31" >
      Vacationsplanned <input id="planned1" type ="date" min="2020-10-01" max="2020-10-31" >
  <input id="planned2" type ="date" min="2020-11-01" max="2020-11-30" align="center">
@@ -467,6 +467,7 @@ input[type=submit] {
 
 </style>
 <script>
+var  vacationdates = []; 
 
 
 this.openCity(event, 'TimeTracker');
@@ -749,15 +750,7 @@ if (this.readyState == 4 && this.status == 200) {
      console.log(this.vacations)
      }
        
-      
-      $("#Txt_Date").datepicker({
-    	    format: 'd-M-yyyy',
-    	    inline: false,
-    	    lang: 'en',
-    	    step: 5,
-    	    multidate: 5,
-    	    closeOnDateSelect: true
-    	});
+   
      document.getElementById('Add').onclick = function() {
     	  var radiobox = document.createElement('input');
     	  radiobox.type = 'radio';
@@ -781,25 +774,24 @@ if (this.readyState == 4 && this.status == 200) {
 
       
        
- 
+	 
       function addvacation(){ 
-    	 vacationdates=[];   	
-    	  
+    	 
     	  console.log("hello");
     	  var dates = document.getElementById("Vacationsplanned").value;
-    	  vacationdates.push(dates);
+    	window.vacationdates.push(dates);
     	  console.log(dates); 
-    	 
-    	  for(var i=0; i<vacationdates.length;i++ ){
+    	
+    //for(var i=0; i<vacationdates.length;i++ ){
     	  var radiobox = document.createElement('input');
     	  radiobox.type = 'checkbox';
-    	  radiobox.value=vacationdates[i];
+    	  radiobox.value=dates;
     	  radiobox.id = 'Add';
     	//  radiobox.value = 'date';
     	  var label = document.createElement('label')
     	  label.htmlFor = 'contact';
 
-    	  var description = document.createTextNode(vacationdates[i]);
+    	  var description = document.createTextNode(dates);
     	  label.appendChild(description);
 
     	  var newline = document.createElement('br');
@@ -808,10 +800,11 @@ if (this.readyState == 4 && this.status == 200) {
     	  container.appendChild(radiobox);
     	  container.appendChild(label);
     	  container.appendChild(newline);
+    	//  document.getElementById("Q4").value=vacationdates.length;
     	  
     	
     	  
-    	  }
+    	// }
     	
     	  vacationdates.length+1;
       }
@@ -834,7 +827,12 @@ if (this.readyState == 4 && this.status == 200) {
     	            parent.children[j].remove();
     	        }
     	     }
+    	   vacationdates.length-1;
+    	    vacationdates.pop(document.getElementById("Addavacation"));
+    	    
       }
+      
+      
       
       function saveQ4HolidayvacationDetails(){
      	 var today = Date.now();
@@ -844,14 +842,23 @@ if (this.readyState == 4 && this.status == 200) {
                   document.getElementById("Q4HolidayvacationResponse").innerHTML = this.responseText;
               }
           };
-         
+          document.getElementById("Q4").value=vacationdates.length;
           
           var LID = document.getElementById("EmpId").value;
          
           var Name = document.getElementById("Name").value;
-          var Q4 = document.getElementById("Q4").value;
+          var Q4 = vacationdates.length;
          
+          // if(lid == "--Select LID--" | lid=="" | lid.length == 0)
+        	  if (Q4 <= 0  ){
+        		  alert("please add date otherwise we consider you are not applying any leave for this quater" );
+        	  }
+          if (Q4>=4){
+        	  alert("Maximum level of leaves 4 only");
+        	  windows.open("error.html");
+          }
           
+        		  
           xhttp.onreadystatechange = function() {
          	 if (this.readyState == 4 && this.status == 200) {
          		//a.click();
@@ -860,11 +867,12 @@ if (this.readyState == 4 && this.status == 200) {
          	 
          	 xhttp.open("Get", "http://localhost:9004/Q4HolidayvacationDetails?LID="+LID
          			+"&Name="+Name
-         			+"&Q4="+Q4 +"&vacationdates="+ vacationdates.toString(),true);
+         			+"&Q4="+Q4 +"&vacationdates="+ vacationdates,true);
          	 console.log(vacationdates);
         
          
             xhttp.send();
+            
           
       }
       
