@@ -771,35 +771,54 @@ if (this.readyState == 4 && this.status == 200) {
     	  container.appendChild(newline);
     	  
     	}
-
-      
-       
-	 
-      function addvacation(){ 
+     function addvacation(){ 
     	 
     	  console.log("hello");
     	  var dates = document.getElementById("Vacationsplanned").value;
-    	window.vacationdates.push(dates);
+    	  
+    	  window.vacationdates.push(dates);
+    	
     	  console.log(dates); 
     	
     //for(var i=0; i<vacationdates.length;i++ ){
     	  var radiobox = document.createElement('input');
     	  radiobox.type = 'checkbox';
+    	  
     	  radiobox.value=dates;
     	  radiobox.id = 'Add';
     	//  radiobox.value = 'date';
     	  var label = document.createElement('label')
     	  label.htmlFor = 'contact';
+    	 var j=0; 
+   	  var container = document.getElementById('container');
+   	 var newline = document.createElement('br');
 
-    	  var description = document.createTextNode(dates);
-    	  label.appendChild(description);
+    	  for(var i=0;i<vacationdates.length;i++)
+    	  {
+    		  
+    	  if(!vacationdates[i].localeCompare(dates))
+    	  {
+    		  j++;
+    		  
+    	  }
+    	  
+    	  }
+    	 if(j<=1){
+    		 var description = document.createTextNode(dates);	
+   		  label.appendChild(description);
+   		container.appendChild(radiobox);	 
+    	 }
+    	  
+    	 // var description = document.createTextNode(dates);
+    	//  label.appendChild(description);
 
-    	  var newline = document.createElement('br');
+    	 // var newline = document.createElement('br');
 
-    	  var container = document.getElementById('container');
-    	  container.appendChild(radiobox);
+    	//  var container = document.getElementById('container');
+    	  //container.appendChild(radiobox);
     	  container.appendChild(label);
-    	  container.appendChild(newline);
+    	 // container.appendChild(newline);
+    	 // container.appendChild(newline);
     	//  document.getElementById("Q4").value=vacationdates.length;
     	  
     	
@@ -807,6 +826,7 @@ if (this.readyState == 4 && this.status == 200) {
     	// }
     	
     	  vacationdates.length+1;
+    	 
       }
       
       function removeElement() {
@@ -871,9 +891,9 @@ if (this.readyState == 4 && this.status == 200) {
          	 console.log(vacationdates);
         
          
+             
             xhttp.send();
-            
-          
+           
       }
       
      /*  var events = [
